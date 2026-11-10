@@ -1,0 +1,177 @@
+Question 1
+╭────────────────╮
+│ quantityOnHand │
+╞════════════════╡
+│            100 │
+╰────────────────╯
+Explanation: This query is finding any item in the item table whose description contains the word "antibiotic" and then prints out the amount
+available from the quantityOnHand column.
+
+Question 2
+╭───────────────╮
+│ volunteerName │
+╞═══════════════╡
+│ Gene Lewin    │
+╰───────────────╯
+Explanation: This query is searching the volunteer table to find volunteers whose phone numbers do not start with 2 and whose last name isn't Jones.
+Volunteers who do not satisfy both conditions are not printed out.
+
+Question 3
+╭───────────────╮
+│ volunteerName │
+╞═══════════════╡
+│ George Brewer │
+╰───────────────╯
+Explanation: The query matches the volunteer to what task they are performing during a specific assignment. The first join matches the volunteer to
+the assignment they're doing. With the second join, it's matching what task is being done during that one assignment. The third join then 
+matches what kind of task is being done, since there can be multiple kinds of transportation tasks.
+
+Question 4
+╭────────────────────────────────╮
+│        taskDescription         │
+╞════════════════════════════════╡
+│ Prepare 100 food packages      │
+│ Transport packages to airport  │
+│ Take packages to the warehouse │
+╰────────────────────────────────╯
+Explanation: The query is matching what tasks in the task table are pending. However, since the task status name isn't included in the 
+task table, you have to use a join query to match the taskTypeId from the task table to the taskTypeName from the task_type table.
+
+Question 5
+╭─────────────────╮
+│ packageTypeName │
+╞═════════════════╡
+│ food and water  │
+╰─────────────────╯
+Explanation: The query is matching what items are in what kinds of packages and only displaying the packages that contain a bottle in it.
+The first join is connecting the name of the type of package to each individual package. The second join helps match what items are actually
+in each package. The third join is matching the item names to each package through itemId. The WHERE clause filters out all other kinds of package types
+that don't contain a bottle. The DISTINCT condition is needed because it will print out every package that has a package type of food and water, 
+and for this question, it is only needed once. 
+
+Question 6
+╭───────────────────────╮
+│    itemDescription    │
+╞═══════════════════════╡
+│ bottle of antibiotics │
+│ bottle of aspirin     │
+│ flashlight            │
+│ pack of bandages      │
+╰───────────────────────╯
+Explanation: This join is matching which items are in which package. However, since we're looking for items that aren't in any packages, you need 
+to use a left join to be able to identify null values. The WHERE clause and IS NULL filters out the other items that are in packages. 
+
+Question 7
+╭────────────────────────────────╮
+│        taskDescription         │
+╞════════════════════════════════╡
+│ Prepare 20 children's packages │
+│ Prepare 100 water packages     │
+│ Prepare 20 children's packages │
+│ Prepare 20 children's packages │
+│ Prepare 5,000 packages         │
+╰────────────────────────────────╯
+Explanation: These joins are matching each volunteer to the task that they're assigned to through the assignment table. Additionally, the WHERE
+clause is added to only print out volunteers who have NJ in their address. Unlike question 5, DISTINCT is not needed because volunteers not from
+NJ can also do those tasks.
+
+Question 8
+╭───────────────╮
+│ volunteerName │
+╞═══════════════╡
+│ Harry Smith   │
+│ Joan Simmons  │
+│ Chris Jordan  │
+╰───────────────╯
+Explanation: The join is matching the volunteer name to the task they're completing, since the assingment table only has their ID. Then, the WHERE
+clause filters out tasks that are started on January 1, 2021 and end on July 2, 2021.
+
+Question 9
+╭───────────────╮
+│ volunteerName │
+╞═══════════════╡
+│ Julie White   │
+│ Gerry Banks   │
+╰───────────────╯
+Explanation: These joins are matching volunteers to the items in the packages they're assigned to. The first join matches the volunteer name to
+their assignment through the assignment table. Then, the second join matches each package in each assignment through the task code. The third join
+identifies what items are in each package, since the package table doesn't have any information about the contents. The final join identifies each 
+item in a package. Then, a WHERE clause is needed to identify all the packages that have spam in them. The DISTINCT condition is needed because
+it will print out all the packages that contain spam, so volunteers names can be printed out multiple times.
+
+Question 10
+╭─────────────────╮
+│ itemDescription │
+╞═════════════════╡
+│ Baby formula    │
+╰─────────────────╯
+Explanation: This join connects the value of each item to the quantity of each item in a package. The WHERE clause needs to multiply the item valaue 
+and the quantity in each package, since the item value isn't included in the package_contents table. The WHERE clause also needs to strictly enforce
+that the total value in a package has to be $100.
+
+Question 11
+╭────────────────┬────────────────╮
+│ taskStatusName │ volunteerCount │
+╞════════════════╪════════════════╡
+│ open           │              4 │
+│ closed         │              4 │
+│ ongoing        │              2 │
+│ pending        │              1 │
+╰────────────────┴────────────────╯
+Explanation: The series of joins here is connecting the volunteers to the status of the tasks they're performing. In addition, it's summing the number
+of volunteers in each category. The first join connects the task status to the task, since the status name isn't included in the task table. Then,
+the second join connects the task to each volunteer's assignment. Then, the final join connects the assignment to the name of the volunteer, since that
+also isn't included in the assignment table. 
+
+Question 12
+╭────────────────────────┬───────────╮
+│    taskDescription     │ maxWeight │
+╞════════════════════════╪═══════════╡
+│ Prepare 5,000 packages │     132.0 │
+╰────────────────────────┴───────────╯
+Explanation: In this join, the task description needed to be connected to the weight of the package in the package table. In order to get the package
+with the heaviest weight, I needed to use the MAX function and assign an alias to display at the end. Since the prompt implied that it only wanted
+the heaviest task package, I used LIMIT 1 to limit the output to only the heaviest package
+
+Question 13
+╭───────────╮
+│ taskCount │
+╞═══════════╡
+│        10 │
+╰───────────╯
+Explanation: In this query, we need to use the COUNT command to sum each task description and an alias needs to be assigned. The WHERE and LIKE 
+clauses also need to be used to only count the tasks that do not have packing in the description
+
+Question 14
+╭─────────────────╮
+│ itemDescription │
+╞═════════════════╡
+│ dried fruit     │
+│ men's coat      │
+│ sleeping bag    │
+│ tent            │
+│ women's coat    │
+╰─────────────────╯
+Explanation: These 4 joins tell us how many times each item was packed by the volunteers. The first join connects the item name to the package contents,
+which specifies the quantity of each item in a package. Then, the join between package and package_contents is needed to assign the contents to an actual
+package as well as to figure out what task the package is in. Then, the join between package and assignment specifies what package the assignment is in, 
+which eventually connects to the volunteer through the final join. In order to find out how many times an item was touched, the COUNT command needs to be
+used to count how many times an item appears in a package, and therefore how many times each item was touched.
+
+Question 15
+╭───────────╮
+│ packageId │
+╞═══════════╡
+│         2 │
+│         4 │
+│         5 │
+│         6 │
+│        10 │
+╰───────────╯
+Explanation: The join connects the price to each item inside the package. Then, since it's asking for the total value in each package and not total value
+of each item, the GROUP BY packageId is needed to separate each package. Then, we need to specify that in each package, the sum of each item's value 
+multiplied by its quantity in the package is greater than 100.
+
+
+
+
